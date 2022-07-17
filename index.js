@@ -60,7 +60,7 @@ async function run() {
             const mingwPath = await tc.downloadTool(urlPrefix + getWinlibsURL(version, arch));
             core.info(`Extracing archive`);
             const mingwFolder = await tc.extract7z(mingwPath, path.join(process.env.RUNNER_TEMP,
-                "mingw-winlibs"), '7z');
+                "mingw-winlibs" + version + arch), '7z');
 
             core.info(`Saving cache`);
             mingwDir = await tc.cacheDir(mingwFolder, 'mingw', version, arch);

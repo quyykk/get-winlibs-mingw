@@ -13,6 +13,8 @@ on:
 jobs:
   test-action:
     runs-on: windows-latest
+    env:
+      RUNNER_DEBUG: 1
 
     steps:
       - uses: actions/checkout@v3
