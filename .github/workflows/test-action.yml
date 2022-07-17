@@ -16,7 +16,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - run: 7z --help
+      - name: Check version
+        run: gcc --version
 
       - name: Get latest MinGW
         uses: ./
