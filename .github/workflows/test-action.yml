@@ -1,0 +1,38 @@
+name: Test Action
+
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  test-action:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Get latest MinGW
+        uses: ./
+      - name: Check version
+        run: gcc --version
+
+      - name: Get an older MinGW
+        uses: ./
+        with:
+          version: '10.3.0'
+      - name: Check version
+        run: gcc --version
+
+      - name: Get an older x86 MinGW
+        uses: ./
+        with:
+          version: '10.3.0'
+          arch: 'x86'
+      - name: Check version
+        run: gcc --version
