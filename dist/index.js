@@ -61317,8 +61317,10 @@ async function run() {
         } else {
             core.info(`Restoring MinGW ${version}-${arch} from cache`)
         }
-        core.debug(mingwPath)
-        core.addPath(path.join(mingwPath, "bin"));
+
+        const pathToGcc = path.join(mingwPath, path.join(arch == "x64" ? "64" : "32", "bin"));
+        core.debug(pathToGcc);
+        core.addPath(pathToGcc);
         core.info(`Done`);
     } catch (error) {
         core.setFailed(error.message);
