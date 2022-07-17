@@ -6091,6 +6091,7 @@ async function run() {
             core.info(`Fetching MinGW ${version}-${arch}`);
 
             const mingwPath = await tc.downloadTool(urlPrefix + getWinlibsURL(version, arch));
+            core.info(`Extracing archive`);
             const mingwFolder = await tc.extract7z(mingwPath, path.join(process.env.RUNNER_TEMP,
                 "mingw-winlibs"));
 
