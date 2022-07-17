@@ -6035,7 +6035,7 @@ const core = __nccwpck_require__(186);
 const tc = __nccwpck_require__(784);
 const path = __nccwpck_require__(17)
 
-const urlPrefix = ""
+const urlPrefix = "https://github.com/brechtsanders/winlibs_mingw/releases/download/"
 
 
 // Returns the URL to the WinLibs MinGW zip with the given properties.
