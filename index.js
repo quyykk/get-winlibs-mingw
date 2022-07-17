@@ -2,7 +2,7 @@ const core = require('@actions/core');
 const tc = require('@actions/tool-cache');
 const path = require('path')
 
-const urlPrefix = ""
+const urlPrefix = "https://github.com/brechtsanders/winlibs_mingw/releases/download/"
 
 
 // Returns the URL to the WinLibs MinGW zip with the given properties.
