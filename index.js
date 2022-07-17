@@ -60,7 +60,7 @@ async function run() {
         if (!cacheKey) {
             core.info(`Fetching MinGW ${version}-${arch}`);
 
-            const downloadPath = await tc.downloadTool(urlPrefix + getWinlibsURL(version, arch));
+            const downloadPath = await tc.downloadTool(urlPrefix + getWinlibsURL(version, arch), '7z');
             core.info(`Extracing archive`);
             await tc.extract7z(downloadPath, mingwPath);
 
