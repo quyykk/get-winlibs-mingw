@@ -6,7 +6,7 @@ A Github Action to download and cache a specific version of MinGW from [WinLibs]
 
 ```yml
     - name: Get MinGW
-      uses: quyykk@get-winlibs-mingw@v1
+      uses: quyykk/get-winlibs-mingw@v1
       with:
         version: 11.3.0 # Default is 12.1.0
         arch: x64 # or x86
