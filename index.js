@@ -70,7 +70,7 @@ async function run() {
             core.info(`Restoring MinGW ${version}-${arch} from cache`)
         }
         core.debug(mingwPath)
-        core.addPath(mingwPath);
+        core.addPath(path.join(mingwPath, "bin"));
         core.info(`Done`);
     } catch (error) {
         core.setFailed(error.message);
