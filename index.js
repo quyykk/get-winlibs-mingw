@@ -67,6 +67,7 @@ async function run() {
         } else {
             core.info(`Restoring MinGW ${version}-${arch} from cache`)
         }
+        core.debug(mingwDir)
         core.addPath(mingwDir);
         core.info(`Done`);
     } catch (error) {
