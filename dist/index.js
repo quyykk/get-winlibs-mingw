@@ -61304,7 +61304,7 @@ async function run() {
 
 		const mingwPath = path.join(process.env.RUNNER_TEMP, 'mingw-winlibs' + version + arch);
 		const key = 'mingw' + version + arch;
-		const cacheKey = await cache.restoreCache(mingwPath, key);
+		const cacheKey = await cache.restoreCache([mingwPath], key);
         if (!cacheKey) {
             core.info(`Fetching MinGW ${version}-${arch}`);
 
@@ -61313,7 +61313,7 @@ async function run() {
             await tc.extract7z(downloadPath, mingwPath, '7z');
 
             core.info(`Saving cache`);
-			await cache.saveCache(mingwPath, key);
+			await cache.saveCache([mingwPath], key);
         } else {
             core.info(`Restoring MinGW ${version}-${arch} from cache`)
         }
