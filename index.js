@@ -70,7 +70,7 @@ async function run() {
             core.info(`Restoring MinGW ${version}-${arch} from cache`)
         }
 
-        const pathToGcc = path.join(mingwPath, path.join(arch == "x64" ? "64" : "32", "bin"));
+        const pathToGcc = path.join(mingwPath, path.join("mingw" + (arch == "x64" ? "64" : "32"), "bin"));
         core.debug(pathToGcc);
         core.addPath(pathToGcc);
         core.info(`Done`);
