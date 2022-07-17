@@ -1,4 +1,5 @@
 const core = require('@actions/core');
+const cache = require('@actions/cache');
 const tc = require('@actions/tool-cache');
 const path = require('path')
 
@@ -53,22 +54,23 @@ async function run() {
             return;
         }
 
-        let mingwDir = tc.find('mingw', version, arch);
-        if (!mingwDir) {
+		const mingwPath = path.join(process.env.RUNNER_TEMP, 'mingw-winlibs' + version + arch);
+		const key = 'mingw' + version + arch;
+		const cacheKey = await cache.restoreCache(mingwPath, key);
+        if (!cacheKey) {
             core.info(`Fetching MinGW ${version}-${arch}`);
 
-            const mingwPath = await tc.downloadTool(urlPrefix + getWinlibsURL(version, arch));
+            const downloadPath = await tc.downloadTool(urlPrefix + getWinlibsURL(version, arch));
             core.info(`Extracing archive`);
-            const mingwFolder = await tc.extract7z(mingwPath, path.join(process.env.RUNNER_TEMP,
-                "mingw-winlibs" + version + arch), '7z');
+            await tc.extract7z(downloadPath, mingwPath);
 
             core.info(`Saving cache`);
-            mingwDir = await tc.cacheDir(mingwFolder, 'mingw', version, arch);
+			await cache.saveCache(mingwPath, key);
         } else {
             core.info(`Restoring MinGW ${version}-${arch} from cache`)
         }
-        core.debug(mingwDir)
-        core.addPath(mingwDir);
+        core.debug(mingwPath)
+        core.addPath(mingwPath);
         core.info(`Done`);
     } catch (error) {
         core.setFailed(error.message);
