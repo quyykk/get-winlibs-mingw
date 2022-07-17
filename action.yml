@@ -1,0 +1,14 @@
+name: 'get-winlibs-mingw'
+description: 'Downloads MinGW from WinLibs on Windows'
+inputs:
+  version:
+    description: 'GCC version to download'
+    required: false
+    default: '12'
+  arch:
+    description: 'Architecture to use (x64 or x86)'
+    required: false
+    default: 'x64'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
