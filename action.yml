@@ -4,7 +4,7 @@ inputs:
   version:
     description: 'GCC version to download'
     required: false
-    default: '12'
+    default: '12.1.0'
   arch:
     description: 'Architecture to use (x64 or x86)'
     required: false
