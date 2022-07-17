@@ -6,7 +6,7 @@ const urlPrefix = "https://github.com/brechtsanders/winlibs_mingw/releases/downl
 
 
 // Returns the URL to the WinLibs MinGW zip with the given properties.
-async function getWinlibsURL(version, arch) {
+function getWinlibsURL(version, arch) {
     // Due to the URLs not following a set template,
     // we unfortunately need to hardcode the URLs.
     if (version == "7.5.0") {
