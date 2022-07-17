@@ -6066,7 +6066,7 @@ function getWinlibsURL(version, arch) {
             "11.3.0-14.0.3-10.0.0-msvcrt-r3/winlibs-i686-posix-dwarf-gcc-11.3.0-mingw-w64msvcrt-10.0.0-r3.7z";
     } else if (version == "12.1.0") {
         return arch == "x64" ?
-            "12.1.0-14.0.4-10.0.0-msvcrt-r2/winlibs-x86_64-posix-seh-gcc-12.1.0-mingw-w64msvcrt-10.0.0-r2.zip" :
+            "12.1.0-14.0.4-10.0.0-msvcrt-r2/winlibs-x86_64-posix-seh-gcc-12.1.0-mingw-w64msvcrt-10.0.0-r2.7z" :
             "12.1.0-14.0.4-10.0.0-msvcrt-r2/winlibs-i686-posix-dwarf-gcc-12.1.0-mingw-w64msvcrt-10.0.0-r2.7z";
     }
     return "";
@@ -6092,8 +6092,8 @@ async function run() {
 
             const mingwPath = await tc.downloadTool(urlPrefix + getWinlibsURL(version, arch));
             core.info(`Extracing archive`);
-            const mingwFolder = await tc.extractZip(mingwPath, path.join(process.env.RUNNER_TEMP,
-                "mingw-winlibs"));
+            const mingwFolder = await tc.extract7z(mingwPath, path.join(process.env.RUNNER_TEMP,
+                "mingw-winlibs"), '7z');
 
             core.info(`Saving cache`);
             mingwDir = await tc.cacheDir(mingwFolder, 'mingw', version, arch);
